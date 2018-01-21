@@ -26,14 +26,10 @@ spec:
             - "agent"
             - "-ui"
             - "-node=consul-1"
-            - "-server"
-            - "-bootstrap-expect=1"
             - "-advertise=$(CONSUL_2_SERVICE_HOST)"
             - "-rejoin"
             - "-client=0.0.0.0"
             - "-config-dir=/etc/consul"
-
-
           ports:
             - containerPort: 8300
               name: server
@@ -65,5 +61,5 @@ spec:
       volumes:
         - name: "consulconfig"
           "secret": {
-            "secretName": "consul-config"
+            "secretName": "consul-config-client"
           }
