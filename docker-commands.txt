@@ -1,0 +1,23 @@
+# run consul
+```
+docker run -d --name=dev-consul -e CONSUL_BIND_INTERFACE=eth0 -p 8500:8500 consul
+```
+
+# get ip
+```
+docker exec -t dev-consul consul members
+Node          Address          Status  Type    Build  Protocol  DC   Segment
+da3c3a9db291  172.17.0.5:8301  alive   server  1.0.2  2         dc1  <all>
+```
+
+# add a member
+```
+docker run -d -e CONSUL_BIND_INTERFACE=eth0 consul agent -dev -join=172.17.0.5
+ff08856c61efdb68ca04da4a8337db33aa582aa2758e0243651ca0410c0ef709
+hamedh-mv-ltmp-x:delete-kubernetes-consul-vault hamedh$ docker exec -t dev-consul consul members
+Node          Address          Status  Type    Build  Protocol  DC   Segment
+da3c3a9db291  172.17.0.5:8301  alive   server  1.0.2  2         dc1  <all>
+ff08856c61ef  172.17.0.6:8301  alive   server  1.0.2  2         dc1  <all>
+
+```
+# now we can go to localhost:8500 to check ui for consul

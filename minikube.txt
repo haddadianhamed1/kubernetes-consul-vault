@@ -1,0 +1,44 @@
+```
+kubectl config view
+kubectl config get-contexts
+kubectl config set current-context minikube
+kubectl get node
+```
+
+# start minikube
+```
+minikube start
+```
+
+# create deployments
+```
+kubectl create -f consul-1-deployments.yaml
+```
+# create endpoint inside cluster
+```
+kubectl create -f consul-service.yaml
+
+```
+
+# expose nodeport for outside access
+```
+kubectl create -f consul-ui-service.yaml
+```
+
+# view service in minikube
+```
+minikube service my-nginx
+
+```
+
+# create secrets
+```
+kubectl create secret generic consul-config --from-file=consul-secrets.conf
+```
+
+# list secrets
+```
+kubectl get secrets
+NAME                  TYPE                                  DATA      AGE
+consul-config         Opaque                                1         1m
+```
