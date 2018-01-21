@@ -33,7 +33,7 @@ minikube service my-nginx
 
 # create secrets
 ```
-kubectl create secret generic consul-config --from-file=consul-secrets.conf
+kubectl create secret generic consul-config --from-file=consul-secrets.json
 ```
 
 # list secrets
